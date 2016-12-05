@@ -287,6 +287,29 @@ withAutoCompleteString:(NSString *)string
 
 #pragma mark - TableView Delegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    if (self.autoCompleteDelegate && [self.autoCompleteDelegate respondsToSelector:@selector(tableView:viewForHeaderInSection:)]) {
+
+        UIView *header = [self.autoCompleteDelegate tableView:tableView viewForHeaderInSection:section];
+        CGFloat height = CGRectGetHeight(header.bounds);
+        return height;
+    }
+    
+    return 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    if(self.autoCompleteDelegate && [self.autoCompleteDelegate respondsToSelector:@selector(tableView:viewForHeaderInSection:)]) {
+        
+        return [self.autoCompleteDelegate tableView:tableView viewForHeaderInSection:section];
+    }
+    else {
+        return nil;
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return self.autoCompleteRowHeight;

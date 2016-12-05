@@ -58,4 +58,7 @@ didHideAutoCompleteTableView:(UITableView *)autoCompleteTableView;
 - (void)autoCompleteTextField:(MLPAutoCompleteTextField *)textField
  didChangeNumberOfSuggestions:(NSInteger)numberOfSuggestions;
 
+@optional
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;
+
 @end
